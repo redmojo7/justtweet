@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+
 import Counter from "./Counter";
 import React, { Component } from 'react';
 import Navbar from "./components/navbar";
@@ -31,6 +32,7 @@ function App() {
           </div>
         </div>
       </div>
+
     </div>
   );
 }
