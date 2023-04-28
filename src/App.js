@@ -1,5 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import Counter from "./Counter";
+import React, { Component } from 'react';
+import Navbar from "./components/navbar";
+import ProfileCover from "./components/profilecover";
+import ProfileInfo from "./components/profileinfo";
+import ProfileStats from "./components/profilestats";
+import NewTweet from "./components/newtweet";
+import TweetCard from "./components/tweetcard";
+import RightPanel from "./components/rightpanel";
 
 import Counter from "./Counter";
 import React, { Component } from 'react';
@@ -32,7 +41,10 @@ function App() {
           </div>
         </div>
       </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5078f4f (Initial justtweet project.)
     </div>
   );
 }
