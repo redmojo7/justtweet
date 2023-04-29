@@ -6,8 +6,8 @@ class ProfileInfo extends Component {
       <div className="text-left">
         <h3>Redmojo</h3>
         <p className="text-secondary">@redmojo7</p>
-        <a href="#">twitter.com/peng</a>
-        <p className="text-primary">Perth, WA</p>
+        <a href="#">twitter.com/redmojo7</a>
+        <p className="text-primary">Devonport, TAS</p>
         <p className="text-secondary">Joined January 2019</p>
         <button className="btn twitter-button" >Tweet to Redmojo</button>
       </div>
