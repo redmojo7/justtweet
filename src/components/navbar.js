@@ -1,24 +1,28 @@
 import React, { Component } from "react";
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 
-class Navbar extends Component {
+class NavigationBar extends Component {
     render() {
         return (
-            <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <a className="navbar-brand" href="#">Navbar</a>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div className="navbar-nav">
-                            <a className="nav-item nav-link active" href="#">Home <span className="sr-only">(current)</span></a>
-                            <a className="nav-item nav-link" href="#">Features</a>
-                            <a className="nav-item nav-link" href="#">Pricing</a>
-                        </div>
-                    </div>
-                </nav>
-            </div>);
+            <Navbar bg="light" expand="lg">
+                <Navbar.Brand href="#home">Twitter</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link href="#home">Home</Nav.Link>
+                        <Nav.Link href="#moments">Moments</Nav.Link>
+                        <Nav.Link href="#messages">Messages</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+        
+                <Form className="form-inline ">
+                    <input type="text" placeholder="Search" className="form-control" />
+                    <button style={{marginLeft: '20px'}} className="btn btn-sm twitter-button">Tweet</button>
+                </Form>
+
+            </Navbar>
+        );
     }
 }
 
-export default Navbar;
+export default NavigationBar;
