@@ -23,7 +23,7 @@ class RightPanel extends Component {
                     <div className="col-md-2 text-left">
                     </div>
                     <div className="col-md-8 text-right">
-                        <p><strong>Peng Cai </strong>@pengcai</p>
+                        <p><strong>Redmojo </strong>@redmojo7</p>
                         <div className="mt-2">
                             <button className="btn btn-sm follow-button" >Follow</button>
                         </div>

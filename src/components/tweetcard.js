@@ -17,7 +17,7 @@ class TweetCard extends Component {
                         <img src={avartaImage} className="avarta-image" alt="avarta Image" />
                     </div>
                     <div className="col-md-10">
-                        <strong>Peng Cai</strong> @pengcai -Jul 18
+                        <strong>Redmojo</strong> @redmojo7 -Jul 18
                         <p>My first tweet!</p>
                         <div className="row">
                             <table className="table table-borderless">
