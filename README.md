@@ -6,7 +6,7 @@ JustTweet Twitter Clone
 Here's a preview of what the app looks like:
 
 <div style="border: 1px solid #444; padding: 10px;">
-  <img src="./assets/justtweet_screenshot.png" alt="JustTweet Screenshot" />
+  <img src="./assets/justtweet_home.png" alt="JustTweet Screenshot" />
 </div>
 
 
