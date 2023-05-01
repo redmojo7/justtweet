@@ -16,14 +16,38 @@ class TweetCards extends Component {
 
     constructor() {
         super();
+        this.handleLike = this.handleLike.bind(this);
+        this.handleRetweet = this.handleRetweet.bind(this);
+        this.handleComment = this.handleComment.bind(this);
     }
 
     handleLike(id) {
         console.log("Like Clicked", id);
+
+        const cards =  this.state.cards.map(item => {
+            if (item.id === id) {
+              item.likes = item.likes+1;
+            }
+            return item;
+          })
+
+        this.setState({
+            cards: cards
+        });
     }
 
     handleRetweet(id) {
         console.log("Retweet Clicked", id);
+        const cards =  this.state.cards.map(item => {
+            if (item.id === id) {
+              item.retweets = item.retweets+1;
+            }
+            return item;
+          })
+
+        this.setState({
+            cards: cards
+        });
     }
 
     handleComment(id) {

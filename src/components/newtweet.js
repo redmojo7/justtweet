@@ -2,6 +2,18 @@ import React, { Component } from "react";
 import avartaImage from '../images/avarta.jpg';
 
 class NewTweet extends Component {
+    state = {}
+    constructor() {
+        super();
+        this.textAreaRef = React.createRef();
+        this.handleTweet = this.handleTweet.bind(this);
+    }
+
+    handleTweet() {
+        const text = this.textAreaRef.current.value;
+        console.log("Tweet Clicked:", text);
+    }
+
     render() {
         return (
             <div className="container">
@@ -10,9 +22,9 @@ class NewTweet extends Component {
                     <img src={avartaImage} className="avarta-image" alt="Example Image" />
                     </div>
                     <div className="col-md-10">
-                        <textarea className="form-control" rows="3" placeholder="What's happening?"></textarea>
+                        <textarea ref={this.textAreaRef} className="form-control" rows="3" placeholder="What's happening?"></textarea>
                         <div className="mt-2">
-                            <button className="btn btn-sm twitter-button" >Tweet</button>
+                            <button onClick={this.handleTweet} className="btn btn-sm twitter-button" >Tweet</button>
                         </div>
                     </div>
                 </div>
