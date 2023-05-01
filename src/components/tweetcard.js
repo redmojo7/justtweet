@@ -3,13 +3,52 @@ import avartaImage from '../images/avarta.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faRetweet, faHeart, faEye } from '@fortawesome/free-solid-svg-icons'
 
+class TweetCards extends Component {
+    state = {
+        user:  { id: 1, name: "Redmojo", account: "@redmojo" },
+        cards: [
+            { id: 1, content: "My first tweet!", comments: 1, retweets: 2, likes: 3,  views: 10, date: "Jul 18"},
+            { id: 2, content: "My seonds tweet!", comments: 2, retweets: 22, likes: 33,  views: 100, date: "Jul 19"},
+            { id: 3, content: "My third tweet!", comments: 3, retweets: 222, likes: 333,  views: 1000, date: "Jul 20"},
+            { id: 4, content: "Hello world!", comments: 4, retweets: 2222, likes: 3333,  views: 10000, date: "Jul 21"}
+        ]
+    }
+
+    constructor() {
+        super();
+    }
+
+    handleLike(id) {
+        console.log("Like Clicked", id);
+    }
+
+    handleRetweet(id) {
+        console.log("Retweet Clicked", id);
+    }
+
+    handleComment(id) {
+        console.log("Comment Clicked", id);
+    }
+
+    render(props) {
+        return (
+            <div>
+                {this.state.cards.map(card => <TweetCard 
+                    key={card.id} card={card} user={this.state.user}
+                    onLike={this.handleLike} onRetweet={this.handleRetweet}
+                    onComment={this.handleComment}
+                    />)}
+            </div>
+        );
+    }
+}
+
+
+
 class TweetCard extends Component {
     render(props) {
-        //const { comments, retweets, likes, views } = props
-        const comments = 4;
-        const retweets = 10;
-        const likes = 111;
-        const views = 1111;
+        const { content, comments, retweets, likes, views, date} = this.props.card;
+        const { name, account } = this.props.user;
         return (
             <div className="container">
                 <div className="row">
@@ -17,15 +56,15 @@ class TweetCard extends Component {
                         <img src={avartaImage} className="avarta-image" alt="avarta Image" />
                     </div>
                     <div className="col-md-10">
-                        <strong>Redmojo</strong> @redmojo7 -Jul 18
-                        <p>My first tweet!</p>
+                        <strong>{name}</strong> {account} - {date}
+                        <p>{content}</p>
                         <div className="row">
                             <table className="table table-borderless">
                                 <tbody className="text-center">
                                     <tr>
-                                        <td> <FontAwesomeIcon icon={faComment} /> {comments}</td>
-                                        <td><FontAwesomeIcon icon={faRetweet} /> {retweets}</td>
-                                        <td> <FontAwesomeIcon icon={faHeart} /> {likes}</td>
+                                        <td onClick={() => this.props.onComment(this.props.card.id)}> <FontAwesomeIcon icon={faComment} /> {comments}</td>
+                                        <td onClick={() => this.props.onRetweet(this.props.card.id)}><FontAwesomeIcon icon={faRetweet} /> {retweets}</td>
+                                        <td onClick={() => this.props.onLike(this.props.card.id)}> <FontAwesomeIcon icon={faHeart} /> {likes}</td>
                                         <td><FontAwesomeIcon icon={faEye} /> {views}</td>
                                     </tr>
                                 </tbody>
@@ -37,4 +76,4 @@ class TweetCard extends Component {
             </div>);
     }
 }
-export default TweetCard;
+export { TweetCard, TweetCards };

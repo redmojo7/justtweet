@@ -6,11 +6,10 @@ import ProfileCover from "./components/profilecover";
 import ProfileInfo from "./components/profileinfo";
 import ProfileStats from "./components/profilestats";
 import NewTweet from "./components/newtweet";
-import TweetCard from "./components/tweetcard";
+import {TweetCards} from "./components/tweetcard";
 import RightPanel from "./components/rightpanel";
 import avartaImage from './images/avarta.jpg';
-
-
+import Counters from './Counters';
 
 function App() {
   return (
@@ -33,13 +32,14 @@ function App() {
           <div className="col-md-6">
             <NewTweet />
             <br />
-            <TweetCard />
+            <TweetCards />
           </div>
           <div className="col-md-3">
             <RightPanel />
           </div>
         </div>
       </div>
+      
     </div>
   );
 }
