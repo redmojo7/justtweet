@@ -4,22 +4,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisVertical, faComment, faRetweet, faHeart, faEye } from '@fortawesome/free-solid-svg-icons'
 
 class TweetCards extends Component {
+    
     state = {
-        cards: [
-            { id: 1, content: "My first tweet!", comments: 1, retweets: 2, likes: 3, views: 10, date: "Jul 18", user: { id: 1, name: "Redmojo", account: "@redmojo" , avatar: "avatar4.jpeg"} },
-            { id: 2, content: "My seonds tweet!", comments: 2, retweets: 22, likes: 33, views: 100, date: "Jul 19", user: { id: 2, name: "John Doe", account: "@johndoe", avatar: "avatar3.jpeg"} },
-            { id: 3, content: "My third tweet!", comments: 3, retweets: 222, likes: 333, views: 1000, date: "Jul 20", user: { id: 3, name: "Jane Smith", account: "@janesmith", avatar: "avatar2.jpeg"} },
-            { id: 4, content: "Hello world!", comments: 4, retweets: 2222, likes: 3333, views: 10000, date: "Jul 21", user: { id: 4, name: "Bob Johnson", account: "@bobjohnson", avatar: "avatar.jpeg"} }
-        ]
+        cards: []
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        //this.state.cards = props.cards;
         this.handleLike = this.handleLike.bind(this);
         this.handleRetweet = this.handleRetweet.bind(this);
         this.handleComment = this.handleComment.bind(this);
         this.handleEllipsis = this.handleEllipsis.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({ cards: this.props.cards });
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.cards !== prevProps.cards) {
+          this.setState({ cards: this.props.cards });
+        }
     }
 
     handleLike(id) {

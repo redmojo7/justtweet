@@ -2,9 +2,15 @@ import React, { Component } from "react";
 import avartaImage from '../images/avatar.jpeg';
 
 class NewTweet extends Component {
+
+    options = {
+        month: "short",
+        day: "numeric"
+    };
+
     state = {}
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.textAreaRef = React.createRef();
         this.handleTweet = this.handleTweet.bind(this);
     }
@@ -12,9 +18,12 @@ class NewTweet extends Component {
     handleTweet() {
         const text = this.textAreaRef.current.value;
         console.log("Tweet Clicked:", text);
+        this.textAreaRef.current.value = "";
+        const tweet = {content: text, comments: 0, retweets: 0, likes: 0, views: 0, date: new Date().toLocaleString("en-US", this.options), user: { id: 1, name: "Redmojo", account: "@redmojo", avatar: "avatar.jpeg" } }
+        this.props.onAddTweet(tweet);  
     }
 
-    render() {
+    render(props) {
         return (
             <div className="container">
                 <div className="row">
