@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import avartaImage from '../images/avarta.jpg';
 
 class RecommendFriends extends Component {
     state = {
-        cards: [
-            { id: 1, name: "Redmojo", account: "@redmojo" },
-            { id: 2, name: "Bluelua", account: "@bluelua" },
-            { id: 3, name: "David", account: "@david" },
-            { id: 4, name: "Jasmine", account: "@jasmine" }
+        users: [
+            { id: 1, name: "Redmojo", account: "@redmojo", avatar: "avatar4.jpeg"},
+            { id: 2, name: "Bluelua", account: "@bluelua", avatar: "avatar3.jpeg" },
+            { id: 3, name: "David", account: "@david", avatar: "avatar2.jpeg" },
+            { id: 4, name: "Jasmine", account: "@jasmine", avatar: "avatar.jpeg" }
         ]
     }
 
@@ -18,14 +17,13 @@ class RecommendFriends extends Component {
 
     handleFollow(id) {
         console.log("Follow Clicked", id);
-        const cards = this.state.cards.filter(
+        const users = this.state.users.filter(
             function (item) {
-                console.log("Follow Clicked...", item.id);
                 return item.id !== id;
             });
 
         this.setState({
-            cards: cards
+            users: users
         });
     }
 
@@ -34,8 +32,8 @@ class RecommendFriends extends Component {
     render(props) {
         return (
             <div>
-                {this.state.cards.map(card =>
-                    <RecommendFriend key={card.id} card={card} onFollow={this.handleFollow}
+                {this.state.users.map(user =>
+                    <RecommendFriend key={user.id} user={user} onFollow={this.handleFollow}
                     />)}
             </div>
         );
@@ -48,15 +46,15 @@ class RecommendFriend extends Component {
         return (
             <div className="row">
                 <div className="col-md-2 text-left">
-                    <img src={avartaImage} className="avarta-image" alt="avarta Image" />
+                    <img src={require(`../images/${this.props.user.avatar}`)} className="avarta-image" alt="avarta Image" />
                 </div>
                 <div className="col-md-2 text-left">
                 </div>
                 <div className="col-md-8 text-right">
-                    <p><strong>{this.props.card.name}  </strong>{this.props.card.account}</p>
+                    <p><strong>{this.props.user.name}  </strong>{this.props.user.account}</p>
                     <div className="mt-2">
                         <button className="btn btn-sm follow-button"
-                            onClick={() => this.props.onFollow(this.props.card.id)}
+                            onClick={() => this.props.onFollow(this.props.user.id)}
                         >Follow</button>
                     </div>
                 </div>

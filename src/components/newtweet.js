@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import avartaImage from '../images/avarta.jpg';
+import avartaImage from '../images/avatar.jpeg';
 
 class NewTweet extends Component {
     state = {}

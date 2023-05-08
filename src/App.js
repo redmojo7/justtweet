@@ -8,7 +8,7 @@ import ProfileStats from "./components/profilestats";
 import NewTweet from "./components/newtweet";
 import {TweetCards} from "./components/tweetcard";
 import RightPanel from "./components/rightpanel";
-import avartaImage from './images/avarta.jpg';
+import avartaImage from './images/avatar.jpeg';
 import Counters from './Counters';
 
 function App() {
