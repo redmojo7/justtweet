@@ -1,6 +1,25 @@
 import React, { Component } from "react";
 
 class ProfileStats extends Component {
+
+    state = {
+        statistics: {}
+    }
+
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount(props) {
+        this.setState({ statistics: this.props.statistics });
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.statistics !== prevProps.statistics) {
+            this.setState({ statistics: this.props.statistics });
+        }
+    }
+
     render() {
         return (
             <div>
@@ -9,17 +28,17 @@ class ProfileStats extends Component {
                         <div className="col-md-6 offset-md-3">
                             <table className="table table-borderless">
                                 <tbody className="text-center">
-                                    <tr >
+                                    <tr>
                                         <td><strong>Tweets</strong></td>
                                         <td><strong>Following</strong></td>
                                         <td><strong>Followers</strong></td>
                                         <td><strong>Likes</strong></td>
                                     </tr>
                                     <tr>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>10</td>
-                                        <td>10</td>
+                                        <td>{this.state.statistics.tweets}</td>
+                                        <td>{this.state.statistics.following}</td>
+                                        <td>{this.state.statistics.followers}</td>
+                                        <td>{this.state.statistics.likes}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -29,4 +48,5 @@ class ProfileStats extends Component {
             </div>);
     }
 }
+
 export default ProfileStats;

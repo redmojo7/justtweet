@@ -121,7 +121,7 @@ class TweetCard extends Component {
                         <img src={require(`../images/${user.avatar}`)} className="avarta-image" alt="avarta Image" />
                     </div>
                     <div className="col-md-10">
-                        <strong>{user.name}</strong> {user.account} - {date}<FontAwesomeIcon className="float-end" onClick={() => this.handleEllipsis(this.props.card.id)} icon={faEllipsisVertical} />
+                        <strong>{user.name}</strong> @{user.account} - {date}<FontAwesomeIcon className="float-end" onClick={() => this.handleEllipsis(this.props.card.id)} icon={faEllipsisVertical} />
                         {this.state.showDeleteButton &&
                             <button className="btn btn-danger float-end" onClick={() => this.props.onDelete(this.props.card.id)}>Delete</button>
                         }

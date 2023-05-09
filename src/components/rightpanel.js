@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class RecommendFriends extends Component {
     state = {
-        users: [
+        recommendUsers: [
             { id: 1, name: "Redmojo", account: "@redmojo", avatar: "avatar4.jpeg"},
             { id: 2, name: "Bluelua", account: "@bluelua", avatar: "avatar3.jpeg" },
             { id: 3, name: "David", account: "@david", avatar: "avatar2.jpeg" },
@@ -17,7 +17,7 @@ class RecommendFriends extends Component {
 
     handleFollow(id) {
         console.log("Follow Clicked", id);
-        const users = this.state.users.filter(
+        const users = this.state.recommendUsers.filter(
             function (item) {
                 return item.id !== id;
             });
@@ -32,7 +32,7 @@ class RecommendFriends extends Component {
     render(props) {
         return (
             <div>
-                {this.state.users.map(user =>
+                {this.state.recommendUsers.map(user =>
                     <RecommendFriend key={user.id} user={user} onFollow={this.handleFollow}
                     />)}
             </div>
