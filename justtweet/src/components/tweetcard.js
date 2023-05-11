@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button } from 'react-bootstrap';
 //import avartaImage from '../images/avatar.jpeg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisVertical, faComment, faRetweet, faHeart, faEye } from '@fortawesome/free-solid-svg-icons'
@@ -33,7 +34,7 @@ class TweetCards extends Component {
         console.log("Like Clicked", id);
 
         const cards = this.state.cards.map(item => {
-            if (item.id === id) {
+            if (item._id === id) {
                 item.likes = item.likes + 1;
             }
             return item;
@@ -47,7 +48,7 @@ class TweetCards extends Component {
     handleRetweet(id) {
         console.log("Retweet Clicked", id);
         const cards = this.state.cards.map(item => {
-            if (item.id === id) {
+            if (item._id === id) {
                 item.retweets = item.retweets + 1;
             }
             return item;
@@ -66,7 +67,7 @@ class TweetCards extends Component {
         console.log("Ellipsis Clicked", id);
         //const showDeleteButton = !this.state.showDeleteButton;
         const cards = this.state.cards.map(item => {
-            if (item.id === id) {
+            if (item._id === id) {
                 if (item.showDeleteButton === undefined) {
                     item.showDeleteButton = true;
                 } else {
@@ -84,7 +85,7 @@ class TweetCards extends Component {
         console.log("Delete Clicked", id);
         const cards = this.state.cards.filter(
             function (item) {
-                return item.id !== id;
+                return item._id !== id;
             });
 
         this.setState({
@@ -96,7 +97,7 @@ class TweetCards extends Component {
         return (
             <div>
                 {this.state.cards.map(card => <TweetCard
-                    key={card.id} card={card}
+                    key={card._id} card={card}
                     onLike={this.handleLike} onRetweet={this.handleRetweet}
                     onComment={this.handleComment} onEllipsis={this.handleEllipsis}
                     onDelete={this.handleDelete}
@@ -127,21 +128,22 @@ class TweetCard extends Component {
                     </div>
                     <div className="col-md-10">
                         <strong>{user.name}</strong> @{user.account} - {date}
-                        <div className="float-end ml-2 p-2 py-1" onClick={() => this.props.onEllipsis(this.props.card.id)}>
+                        <div className="float-end ml-2 p-2 py-1" onClick={() => this.props.onEllipsis(this.props.card._id)}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </div>
                         {showDeleteButton &&
-                            <button className="btn btn-danger float-end" onClick={() => this.props.onDelete(this.props.card.id)}>Delete</button>
+                            
+                            <span><Button onClick={() => this.props.onDelete(this.props.card._id)} variant="link" className="float-end">Delete</Button></span>
                         }
                         <p>{content}</p>
                         <div className="row">
                             <table className="table table-borderless">
                                 <tbody className="text-center">
                                     <tr>
-                                        <td onClick={() => this.props.onComment(this.props.card.id)}> <FontAwesomeIcon icon={faComment} /> {comments}</td>
-                                        <td onClick={() => this.props.onRetweet(this.props.card.id)}><FontAwesomeIcon icon={faRetweet} /> {retweets}</td>
-                                        <td onClick={() => this.props.onLike(this.props.card.id)}> <FontAwesomeIcon icon={faHeart} /> {likes}</td>
-                                        <td><FontAwesomeIcon icon={faEye} /> {views}</td>
+                                        <td > <FontAwesomeIcon icon={faComment} onClick={() => this.props.onComment(this.props.card._id)}/> {comments}</td>
+                                        <td > <FontAwesomeIcon icon={faRetweet} onClick={() => this.props.onRetweet(this.props.card._id)} /> {retweets}</td>
+                                        <td > <FontAwesomeIcon icon={faHeart} onClick={() => this.props.onLike(this.props.card._id)} /> {likes}</td>
+                                        <td > <FontAwesomeIcon icon={faEye} /> {views}</td>
                                     </tr>
                                 </tbody>
                             </table>
