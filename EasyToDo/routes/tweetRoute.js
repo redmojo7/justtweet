@@ -11,7 +11,9 @@ tweetRouter.get('/', async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        const tweets = await Tweet.find({ user: foundUser._id }).sort({ _id: -1 });
+        const tweets = await Tweet.find({ user: foundUser._id })
+            .sort({ _id: -1 })
+            .populate('user');
         res.json({ tweets });
     } catch (err) {
         console.error(err);

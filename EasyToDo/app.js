@@ -1,5 +1,6 @@
 const express = require('express');
 const initialize = require('./init');
+const cors = require('cors');
 // Import routes
 const userRoute = require('./routes/userRoute');
 const tweetRoute = require('./routes/tweetRoute');
@@ -10,16 +11,17 @@ const port = 8080;
 app.set('view engine', 'pug');
 
 //app.use('/api', routes);
-
-
-app.get('/', (req, res) => {
-  res.render('index', { title: 'Welcome to my website' });
-});
+// Enable CORS
+app.use(cors());
 
 // Use routes
 app.use('/api/user', userRoute);
 app.use('/api/tweets', tweetRoute);
 
+
+app.get('/', (req, res) => {
+  res.render('index', { title: 'Welcome to backend' });
+});
 
 // Initialize database and run server
 initialize().then(() => {
