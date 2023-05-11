@@ -21,10 +21,13 @@ class TweetCards extends Component {
     }
 
     componentDidMount() {
+        console.log("TweetCards Mounted")
+        console.log("TweetCards Mounted", this.props.cards);
         this.setState({ cards: this.props.cards });
     }
 
     componentDidUpdate(prevProps) {
+        console.log("TweetCards Updated");
         if (this.props.cards !== prevProps.cards) {
             this.setState({ cards: this.props.cards });
         }

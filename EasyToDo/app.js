@@ -1,13 +1,16 @@
 const express = require('express');
 const initialize = require('./init');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 // Import routes
 const userRoute = require('./routes/userRoute');
 const tweetRoute = require('./routes/tweetRoute');
 const app = express();
 const port = 8080;
 
-//app.use(express.json());
+// Parse JSON bodies for incoming requests
+app.use(bodyParser.json());
+
 app.set('view engine', 'pug');
 
 //app.use('/api', routes);

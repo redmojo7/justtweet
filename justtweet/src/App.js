@@ -9,6 +9,7 @@ import NewTweet from "./components/newtweet";
 import { TweetCards } from "./components/tweetcard";
 import RightPanel from "./components/rightpanel";
 import avartaImage from './images/avatar.jpeg';
+import {fetchTweets, createTweet} from './components/tweet/tweet';
 import axios from 'axios';
 
 function App() {
@@ -22,22 +23,25 @@ function App() {
     likes: 10
   });
 
-  const handleAddTweet = (tweet) => {
+  const handleAddTweet = async (tweet) => {
     console.log("handleAddTweet Tweet Clicked:", tweet);
-    tweet.id = cards.length + 1;
-    setCards(cards => [tweet, ...cards]);
+    //tweet.id = cards.length + 1;
+    //setCards(cards => [tweet, ...cards]);
     statistics.tweets++;
+    const newTweet = await createTweet(tweet);
+    const updatedCards = await fetchTweets();
+    setCards(updatedCards);
   }
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/tweets')
-      .then(response => {
-        setCards(response.data.tweets);
-      })
-      .catch(error => {
-        console.error('Error fetching tweets:', error);
-      });
+    const fetchData = async () => {
+      const updatedCards = await fetchTweets();
+      setCards(updatedCards);
+    };
+    fetchData();
   }, []);
+
+
 
   return (
     <div className="App">
