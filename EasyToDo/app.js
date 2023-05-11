@@ -1,9 +1,10 @@
 const express = require('express');
-//const mongoose = require('mongoose');
-const connection = require('./db');
 const initialize = require('./init');
+// Import routes
+const userRoute = require('./routes/userRoute');
+const tweetRoute = require('./routes/tweetRoute');
 const app = express();
-
+const port = 8080;
 
 //app.use(express.json());
 app.set('view engine', 'pug');
@@ -15,10 +16,13 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'Welcome to my website' });
 });
 
+// Use routes
+app.use('/api/user', userRoute);
+app.use('/api/tweets', tweetRoute);
 
 
 // Initialize database and run server
 initialize().then(() => {
   // Your application code goes here
-  app.listen(8080, () => console.log('Server listening on port 3000'));
+  app.listen(port, () => console.log('Server listening on port ' + port + '!'));
 });
