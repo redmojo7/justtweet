@@ -57,11 +57,22 @@
   border-radius: 20px;
   padding: 5px 20px;
 }
+.twitter-button:hover {
+  border: 1px solid #1da1f2;
+  border-radius: 20px;
+  padding: 5px 20px;
+}
 
 .follow-button {
   background-color: white;
   color: #1da1f2;
   border: 1px solid #1da1f2;
+  border-radius: 20px;
+  padding: 5px 20px;
+}
+.follow-button:hover {
+  background-color: #1da1f2;
+  color: white;
   border-radius: 20px;
   padding: 5px 20px;
 }

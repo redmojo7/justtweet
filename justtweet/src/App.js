@@ -9,7 +9,7 @@ import NewTweet from "./components/newtweet";
 import { TweetCards } from "./components/tweetcard";
 import RightPanel from "./components/rightpanel";
 import avartaImage from './images/avatar.jpeg';
-import {fetchTweets, createTweet, deleteTweet} from './components/services/tweetservice';
+import { fetchTweets, createTweet, deleteTweet } from './components/services/tweetservice';
 import getProfile from './components/services/userservice';
 
 
@@ -20,20 +20,32 @@ function App() {
   const [profile, setProfile] = useState({});
 
   const [statistics, setStatistics] = useState({
-    tweets: 10,
+    tweets: 3,
     following: 10,
     followers: 10,
-    likes: 10
+    likes: 0
   });
+
+
+  // Function to update the statistics
+  const updateStatistics = () => {
+    // Calculate the sum of likes
+    const totalLikes = cards.reduce((total, card) => total + card.likes, 0);
+
+    // Update the statistics state with the new values
+    setStatistics(prevStatistics => ({
+      ...prevStatistics,
+      tweets: cards.length,
+      likes: totalLikes
+    }));
+  };
+
 
   const handleAddTweet = async (tweet) => {
     console.log("handleAddTweet Tweet Clicked:", tweet);
     //tweet.id = cards.length + 1;
     //setCards(cards => [tweet, ...cards]);
-    setStatistics(prevState => ({
-      ...prevState,
-      tweets: prevState.tweets + 1
-    }));
+  
     const newTweet = await createTweet(tweet);
     console.log("New Tweet:", newTweet);
     const updatedCards = await fetchTweets();
@@ -58,8 +70,13 @@ function App() {
   useEffect(() => {
     fetchProfile();
     fetchData();
-    
   }, []);
+
+  // Use the useEffect hook to update the statistics when the cards change
+  useEffect(() => {
+    updateStatistics();
+  }, [cards]);
+
 
   const handleLikeTweet = async (id) => {
     console.log("Like Clicked", id);
@@ -91,7 +108,7 @@ function App() {
       <div className="container" >
         <div className="row">
           <div className="col-md-3">
-            < ProfileInfo profile={profile}/>
+            < ProfileInfo profile={profile} />
           </div>
           <div className="col-md-6">
             <NewTweet profile={profile} onAddTweet={handleAddTweet} />
