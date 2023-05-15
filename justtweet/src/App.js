@@ -9,7 +9,7 @@ import NewTweet from "./components/newtweet";
 import { TweetCards } from "./components/tweetcard";
 import RightPanel from "./components/rightpanel";
 import avartaImage from './images/avatar.jpeg';
-import {fetchTweets, createTweet} from './components/services/tweetservice';
+import {fetchTweets, createTweet, deleteTweet} from './components/services/tweetservice';
 import getProfile from './components/services/userservice';
 
 
@@ -40,17 +40,22 @@ function App() {
     setCards(updatedCards);
   }
 
+  const fetchProfile = async () => {
+    const profile = await getProfile();
+    setProfile(profile);
+  }
+
+  const fetchData = async () => {
+    const updatedCards = await fetchTweets();
+    setCards(updatedCards);
+  };
+
+  const deleteTweetAction = async (tweetId) => {
+    console.log("Delete Tweet:", tweetId);
+    await deleteTweet(tweetId);
+  }
+
   useEffect(() => {
-    const fetchProfile = async () => {
-      const profile = await getProfile();
-      setProfile(profile);
-    }
-
-    const fetchData = async () => {
-      const updatedCards = await fetchTweets();
-      setCards(updatedCards);
-    };
-
     fetchProfile();
     fetchData();
     
@@ -62,6 +67,12 @@ function App() {
       ...prevState,
       likes: prevState.likes + 1
     }));
+  }
+
+  const handleDeleteTweet = async (tweetId) => {
+    console.log("Delete Clicked", tweetId);
+    deleteTweetAction(tweetId);
+    fetchData();
   }
 
 
@@ -85,7 +96,7 @@ function App() {
           <div className="col-md-6">
             <NewTweet profile={profile} onAddTweet={handleAddTweet} />
             <br />
-            <TweetCards profile={profile} cards={cards} onLikeTweet={handleLikeTweet} />
+            <TweetCards profile={profile} cards={cards} onDeleteTweet={handleDeleteTweet} onLikeTweet={handleLikeTweet} />
           </div>
           <div className="col-md-3">
             <RightPanel />

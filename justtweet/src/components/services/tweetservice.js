@@ -24,4 +24,18 @@ export const createTweet = (tweet) => {
   });
 };
 
+export const deleteTweet = (tweetId) => {
+  console.log("deleteTweet:", tweetId);
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`http://localhost:8080/api/tweets/${tweetId}`)
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((error) => {
+        console.error('Error deleting tweet:', error);
+        reject(error);
+      });
+  });
+};
 

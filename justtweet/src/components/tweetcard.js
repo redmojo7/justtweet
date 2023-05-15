@@ -93,6 +93,7 @@ class TweetCards extends Component {
 
     handleDelete(id) {
         console.log("Delete Clicked", id);
+        /*
         const cards = this.state.cards.filter(
             function (item) {
                 return item._id !== id;
@@ -101,6 +102,8 @@ class TweetCards extends Component {
         this.setState({
             cards: cards
         });
+        */
+        this.props.onDeleteTweet(id);  
     }
 
     render(props) {

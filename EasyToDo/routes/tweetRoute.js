@@ -14,7 +14,7 @@ tweetRouter.get('/', async (req, res) => {
 
         const tweets = await Tweet.find({ user: foundUser._id })
             .sort({ _id: -1 });
-            //.populate('user');
+        //.populate('user');
         res.json({ tweets });
     } catch (err) {
         console.error(err);
@@ -54,5 +54,25 @@ tweetRouter.post('/', async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
 });
+
+// delete a tweet
+tweetRouter.delete('/:id', async (req, res) => {
+    const tweetId = req.params.id;
+    try {
+        // delete the tweet
+        const deletedTweet = await Tweet.deleteOne({ _id: tweetId }).exec();
+
+        // Check if the tweet was successfully deleted
+        if (deletedTweet.deletedCount === 1) {
+            res.status(200).json({ message: 'Tweet deleted successfully' });
+        } else {
+            res.status(404).json({ message: 'Tweet not found' });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server Error' });
+    }
+});
+
 
 module.exports = tweetRouter;
