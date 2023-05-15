@@ -10,10 +10,14 @@ import { TweetCards } from "./components/tweetcard";
 import RightPanel from "./components/rightpanel";
 import avartaImage from './images/avatar.jpeg';
 import {fetchTweets, createTweet} from './components/services/tweetservice';
+import getProfile from './components/services/userservice';
+
 
 function App() {
 
   const [cards, setCards] = useState([]);
+
+  const [profile, setProfile] = useState({});
 
   const [statistics, setStatistics] = useState({
     tweets: 10,
@@ -31,16 +35,25 @@ function App() {
       tweets: prevState.tweets + 1
     }));
     const newTweet = await createTweet(tweet);
+    console.log("New Tweet:", newTweet);
     const updatedCards = await fetchTweets();
     setCards(updatedCards);
   }
 
   useEffect(() => {
+    const fetchProfile = async () => {
+      const profile = await getProfile();
+      setProfile(profile);
+    }
+
     const fetchData = async () => {
       const updatedCards = await fetchTweets();
       setCards(updatedCards);
     };
+
+    fetchProfile();
     fetchData();
+    
   }, []);
 
   const handleLikeTweet = async (id) => {
@@ -67,12 +80,12 @@ function App() {
       <div className="container" >
         <div className="row">
           <div className="col-md-3">
-            < ProfileInfo />
+            < ProfileInfo profile={profile}/>
           </div>
           <div className="col-md-6">
-            <NewTweet onAddTweet={handleAddTweet} />
+            <NewTweet profile={profile} onAddTweet={handleAddTweet} />
             <br />
-            <TweetCards cards={cards} onLikeTweet={handleLikeTweet} />
+            <TweetCards profile={profile} cards={cards} onLikeTweet={handleLikeTweet} />
           </div>
           <div className="col-md-3">
             <RightPanel />

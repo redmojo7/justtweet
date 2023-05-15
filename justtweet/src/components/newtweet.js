@@ -15,11 +15,23 @@ class NewTweet extends Component {
         this.handleTweet = this.handleTweet.bind(this);
     }
 
+    componentDidMount() {
+        console.log("NewTweet Mounted", this.props.cards);
+        this.setState({ profile: this.props.profile });
+    }
+
+    componentDidUpdate(prevProps) {
+        console.log("NewTweet Updated");
+        if (this.props.profile !== prevProps.profile) {
+            this.setState({ profile: this.props.profile });
+        }
+    }
+
     handleTweet() {
         const text = this.textAreaRef.current.value;
         console.log("Tweet Clicked:", text);
         this.textAreaRef.current.value = "";
-        const tweet = {content: text, comments: 0, retweets: 0, likes: 0, views: 0, date: new Date().toLocaleString("en-US", this.options), user: { id: 1, name: "Redmojo", account: "redmojo", avatar: "avatar.jpeg" } }
+        const tweet = {content: text, comments: 0, retweets: 0, likes: 0, views: 0, date: new Date().toLocaleString("en-US", this.options), user: this.state.profile }
         this.props.onAddTweet(tweet);  
     }
 

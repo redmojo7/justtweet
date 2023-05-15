@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import getProfile from "./services/userservice";
 
 class ProfileInfo extends Component {
 
@@ -13,13 +12,14 @@ class ProfileInfo extends Component {
 
   componentDidMount(props) {
     console.log("ProfileInfo Mounted");
-    getProfile()
-      .then(profile => {
-        //console.log("ProfileInfo Mounted", profile);
-        this.setState({ profile: profile });
-      })
+    this.setState({ profile: this.props.profile });
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.profile !== prevProps.profile) {
+        this.setState({ profile: this.props.profile });
+    }
+  }
 
   render() {
     const { profile } = this.state;

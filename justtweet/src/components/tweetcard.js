@@ -7,7 +7,8 @@ import { faEllipsisVertical, faComment, faRetweet, faHeart, faEye } from '@forta
 class TweetCards extends Component {
 
     state = {
-        cards: []
+        cards: [],
+        profile: {}
     }
 
     constructor(props) {
@@ -21,15 +22,18 @@ class TweetCards extends Component {
     }
 
     componentDidMount() {
-        console.log("TweetCards Mounted")
         console.log("TweetCards Mounted", this.props.cards);
         this.setState({ cards: this.props.cards });
+        this.setState({ profile: this.props.profile });
     }
 
     componentDidUpdate(prevProps) {
         console.log("TweetCards Updated");
         if (this.props.cards !== prevProps.cards) {
             this.setState({ cards: this.props.cards });
+        }
+        if (this.props.profile !== prevProps.profile) {
+            this.setState({ profile: this.props.profile });
         }
     }
 
@@ -103,7 +107,7 @@ class TweetCards extends Component {
         return (
             <div>
                 {this.state.cards.map(card => <TweetCard
-                    key={card._id} card={card}
+                    key={card._id} card={card} profile={this.state.profile}
                     onLike={this.handleLike} onRetweet={this.handleRetweet}
                     onComment={this.handleComment} onEllipsis={this.handleEllipsis}
                     onDelete={this.handleDelete}
@@ -125,7 +129,8 @@ class TweetCard extends Component {
     }
 
     render(props) {
-        const { content, comments, retweets, likes, views, date, user, showDeleteButton} = this.props.card;
+        const { content, comments, retweets, likes, views, date, showDeleteButton} = this.props.card;
+        const user = this.props.profile;
         return (
             <div className="container">
                 <div className="row">

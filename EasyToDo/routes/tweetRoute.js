@@ -13,8 +13,8 @@ tweetRouter.get('/', async (req, res) => {
         }
 
         const tweets = await Tweet.find({ user: foundUser._id })
-            .sort({ _id: -1 })
-            .populate('user');
+            .sort({ _id: -1 });
+            //.populate('user');
         res.json({ tweets });
     } catch (err) {
         console.error(err);
