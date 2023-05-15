@@ -46,6 +46,9 @@ class TweetCards extends Component {
         this.setState({
             cards: cards
         });
+
+        this.props.onLikeTweet();  
+
     }
 
     handleRetweet(id) {

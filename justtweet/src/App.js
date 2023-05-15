@@ -9,8 +9,7 @@ import NewTweet from "./components/newtweet";
 import { TweetCards } from "./components/tweetcard";
 import RightPanel from "./components/rightpanel";
 import avartaImage from './images/avatar.jpeg';
-import {fetchTweets, createTweet} from './components/tweet/tweet';
-import axios from 'axios';
+import {fetchTweets, createTweet} from './components/services/tweetservice';
 
 function App() {
 
@@ -27,7 +26,10 @@ function App() {
     console.log("handleAddTweet Tweet Clicked:", tweet);
     //tweet.id = cards.length + 1;
     //setCards(cards => [tweet, ...cards]);
-    statistics.tweets++;
+    setStatistics(prevState => ({
+      ...prevState,
+      tweets: prevState.tweets + 1
+    }));
     const newTweet = await createTweet(tweet);
     const updatedCards = await fetchTweets();
     setCards(updatedCards);
@@ -41,6 +43,13 @@ function App() {
     fetchData();
   }, []);
 
+  const handleLikeTweet = async (id) => {
+    console.log("Like Clicked", id);
+    setStatistics(prevState => ({
+      ...prevState,
+      likes: prevState.likes + 1
+    }));
+  }
 
 
   return (
@@ -63,7 +72,7 @@ function App() {
           <div className="col-md-6">
             <NewTweet onAddTweet={handleAddTweet} />
             <br />
-            <TweetCards cards={cards} />
+            <TweetCards cards={cards} onLikeTweet={handleLikeTweet} />
           </div>
           <div className="col-md-3">
             <RightPanel />
