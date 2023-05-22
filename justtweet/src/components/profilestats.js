@@ -25,7 +25,10 @@ class ProfileStats extends Component {
             <div>
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-6 offset-md-3">
+                        <div className="col-md-3">
+                            <img src="images/avatar.jpeg" className="avarta-image-flow" alt="avarta Image" />
+                        </div>
+                        <div className="col-md-6 ">
                             <table className="table table-borderless">
                                 <tbody className="text-center">
                                     <tr>

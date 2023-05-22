@@ -107,13 +107,6 @@ function App() {
     <div className="App">
       <NavigationBar />
       <ProfileCover />
-      <div className="container" >
-        <div className="row">
-          <div className="col-md-3">
-          <img src={`images/${profile.avatar}`} className="avarta-image-flow" alt="avarta Image" />
-          </div>
-        </div>
-      </div>
       <ProfileStats statistics={statistics} />
       <div className="container" >
         <div className="row">
