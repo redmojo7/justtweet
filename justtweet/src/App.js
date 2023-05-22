@@ -9,8 +9,8 @@ import NewTweet from "./components/newtweet";
 import { TweetCards } from "./components/tweetcard";
 import RightPanel from "./components/rightpanel";
 import avartaImage from './images/avatar.jpeg';
-import { fetchTweets, createTweet, deleteTweet } from './components/services/tweetservice';
-import getProfile from './components/services/userservice';
+import { fetchTweets, createTweet, deleteTweet } from './controllers/tweetcontroller';
+import getProfile from './controllers/userscontroller';
 
 
 function App() {

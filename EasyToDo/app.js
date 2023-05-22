@@ -19,7 +19,7 @@ app.use(cors());
 
 // Use routes
 app.use('/api/user', userRoute);
-app.use('/api/tweets', tweetRoute);
+app.use('/api/tweet', tweetRoute);
 
 
 app.get('/', (req, res) => {
