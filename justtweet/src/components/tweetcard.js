@@ -109,7 +109,7 @@ class TweetCards extends Component {
     render(props) {
         return (
             <div>
-                {this.state.cards.map(card => <TweetCard
+                {this.state.cards.length > 0 && this.state.cards.map(card => <TweetCard
                     key={card._id} card={card} profile={this.state.profile}
                     onLike={this.handleLike} onRetweet={this.handleRetweet}
                     onComment={this.handleComment} onEllipsis={this.handleEllipsis}

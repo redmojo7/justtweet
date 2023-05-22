@@ -29,15 +29,25 @@ function App() {
 
   // Function to update the statistics
   const updateStatistics = () => {
-    // Calculate the sum of likes
-    const totalLikes = cards.reduce((total, card) => total + card.likes, 0);
-
-    // Update the statistics state with the new values
-    setStatistics(prevStatistics => ({
-      ...prevStatistics,
-      tweets: cards.length,
-      likes: totalLikes
-    }));
+    if (cards.length === 0 || Object.keys(cards).length === 0) {
+      // If `cards` is empty, set the statistics to default values
+      setStatistics({
+        tweets: 0,
+        following: 10,
+        followers: 10,
+        likes: 0
+      });
+    } else {
+      // Calculate the sum of likes
+      const totalLikes = cards.reduce((total, card) => total + card.likes, 0);
+  
+      // Update the statistics state with the new values
+      setStatistics(prevStatistics => ({
+        ...prevStatistics,
+        tweets: cards.length,
+        likes: totalLikes
+      }));
+    }
   };
 
 
@@ -54,6 +64,7 @@ function App() {
 
   const fetchProfile = async () => {
     const profile = await getProfile();
+    console.log("Profile:", profile);
     setProfile(profile);
   }
 
