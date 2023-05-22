@@ -147,7 +147,7 @@ class TweetCard extends Component {
                         </div>
                         {showDeleteButton &&
                             
-                            <span><Button onClick={() => this.props.onDelete(this.props.card._id)} variant="link" className="float-end">Delete</Button></span>
+                            <span ><Button onClick={() => this.props.onDelete(this.props.card._id)} variant="link" className="float-end custom-delete-button">Delete</Button></span>
                         }
                         <p>{content}</p>
                         <div className="row">

@@ -27,7 +27,10 @@
   overflow: hidden;
 }
 
-
+.custom-delete-button {
+  color: red;
+  /* Add any additional styling here */
+}
 
 
 .background-cover {
