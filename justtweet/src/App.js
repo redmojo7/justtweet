@@ -8,7 +8,7 @@ import ProfileStats from "./components/profilestats";
 import NewTweet from "./components/newtweet";
 import { TweetCards } from "./components/tweetcard";
 import RightPanel from "./components/rightpanel";
-import { fetchTweets, createTweet, deleteTweet } from './controllers/tweetcontroller';
+import { loadTweets as getTweets, createTweet, deleteTweet } from './controllers/tweetcontroller';
 import getProfile from './controllers/userscontroller';
 
 
@@ -57,7 +57,7 @@ function App() {
   
     const newTweet = await createTweet(tweet);
     console.log("New Tweet:", newTweet);
-    const updatedCards = await fetchTweets();
+    const updatedCards = await getTweets();
     setCards(updatedCards);
   }
 
@@ -67,8 +67,8 @@ function App() {
     setProfile(profile);
   }
 
-  const fetchData = async () => {
-    const updatedCards = await fetchTweets();
+  const fetchTweets = async () => {
+    const updatedCards = await getTweets();
     setCards(updatedCards);
   };
 
@@ -79,7 +79,7 @@ function App() {
 
   useEffect(() => {
     fetchProfile();
-    fetchData();
+    fetchTweets();
   }, []);
 
   // Use the useEffect hook to update the statistics when the cards change
@@ -99,7 +99,7 @@ function App() {
   const handleDeleteTweet = async (tweetId) => {
     console.log("Delete Clicked", tweetId);
     deleteTweetAction(tweetId);
-    fetchData();
+    fetchTweets();
   }
 
 

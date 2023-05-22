@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const fetchTweets = async () => {
+export const loadTweets = async () => {
   try {
     const response = await axios.get('http://localhost:8080/api/tweet');
     return response.data.tweets;
