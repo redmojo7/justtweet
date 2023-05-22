@@ -8,7 +8,6 @@ import ProfileStats from "./components/profilestats";
 import NewTweet from "./components/newtweet";
 import { TweetCards } from "./components/tweetcard";
 import RightPanel from "./components/rightpanel";
-import avartaImage from './images/avatar.jpeg';
 import { fetchTweets, createTweet, deleteTweet } from './controllers/tweetcontroller';
 import getProfile from './controllers/userscontroller';
 
@@ -111,7 +110,7 @@ function App() {
       <div className="container" >
         <div className="row">
           <div className="col-md-3">
-            <img src={avartaImage} className="avarta-image-flow" alt="avarta Image" />
+          <img src={`images/${profile.avatar}`} className="avarta-image-flow" alt="avarta Image" />
           </div>
         </div>
       </div>

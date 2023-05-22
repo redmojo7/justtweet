@@ -138,7 +138,7 @@ class TweetCard extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-2">
-                        <img src={require(`../images/${user.avatar}`)} className="avarta-image" alt="avarta Image" />
+                    <img src={`images/${user.avatar}`} className="avarta-image" alt="avarta Image" />
                     </div>
                     <div className="col-md-10">
                         <strong>{user.name}</strong> @{user.account} - {date}

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import avartaImage from '../images/avatar.jpeg';
 
 class NewTweet extends Component {
 
@@ -40,7 +39,7 @@ class NewTweet extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-2">
-                    <img src={avartaImage} className="avarta-image" alt="Example Image" />
+                    <img src={`images/${this.props.profile.avatar}`} className="avarta-image" alt="Example Image" />
                     </div>
                     <div className="col-md-10">
                         <textarea ref={this.textAreaRef} className="form-control" rows="3" placeholder="What's happening?"></textarea>

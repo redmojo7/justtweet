@@ -46,7 +46,7 @@ class RecommendFriend extends Component {
         return (
             <div className="row">
                 <div className="col-md-2 text-left">
-                    <img src={require(`../images/${this.props.user.avatar}`)} className="avarta-image" alt="avarta Image" />
+                <img src={`images/${this.props.user.avatar}`} className="avarta-image" alt="avarta Image" />
                 </div>
                 <div className="col-md-2 text-left">
                 </div>
