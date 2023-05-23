@@ -6,8 +6,6 @@ const mongodbUri = "mongodb+srv://admin:ivLP8phnaayYDPlC@newdb.eyriroh.mongodb.n
 mongoose.connect(mongodbUri)
   .then(() => {
     console.log('Connected to MongoDB');
-    //mongoose.connection.dropDatabase();
-    //console.log('Database cleared!');
   })
   .catch((err) => {
     console.error('Could not connect to MongoDB', err);

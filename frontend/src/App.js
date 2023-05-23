@@ -1,6 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import NavigationBar from "./components/navbar";
 import ProfileCover from "./components/profilecover";
 import ProfileInfo from "./components/profileinfo";
@@ -18,13 +18,7 @@ function App() {
 
   const [profile, setProfile] = useState({});
 
-  const [statistics, setStatistics] = useState({
-    tweets: 3,
-    following: 10,
-    followers: 10,
-    likes: 0
-  });
-
+  const [statistics, setStatistics] = useState({});
 
   // Function to update the statistics
   const updateStatistics = () => {
@@ -39,7 +33,7 @@ function App() {
     } else {
       // Calculate the sum of likes
       const totalLikes = cards.reduce((total, card) => total + card.likes, 0);
-  
+
       // Update the statistics state with the new values
       setStatistics(prevStatistics => ({
         ...prevStatistics,
@@ -52,9 +46,6 @@ function App() {
 
   const handleAddTweet = async (tweet) => {
     console.log("handleAddTweet Tweet Clicked:", tweet);
-    //tweet.id = cards.length + 1;
-    //setCards(cards => [tweet, ...cards]);
-  
     const newTweet = await createTweet(tweet);
     console.log("New Tweet:", newTweet);
     const updatedCards = await getTweets();
@@ -72,11 +63,7 @@ function App() {
     setCards(updatedCards);
   };
 
-  const deleteTweetAction = async (tweetId) => {
-    console.log("Delete Tweet:", tweetId);
-    await deleteTweet(tweetId);
-  }
-
+  // Use the useEffect hook to fetch the tweets when the component mounts
   useEffect(() => {
     fetchProfile();
     fetchTweets();
@@ -98,7 +85,7 @@ function App() {
 
   const handleDeleteTweet = async (tweetId) => {
     console.log("Delete Clicked", tweetId);
-    deleteTweetAction(tweetId);
+    await deleteTweet(tweetId);
     fetchTweets();
   }
 
@@ -108,24 +95,28 @@ function App() {
       <NavigationBar />
       <ProfileCover />
       <ProfileStats statistics={statistics} />
-      <div className="container" >
-        <div className="row">
-          <div className="col-md-3">
-            < ProfileInfo profile={profile} />
-          </div>
-          <div className="col-md-6">
+      <Container>
+        <Row>
+          <Col md={3}>
+            <ProfileInfo profile={profile} />
+          </Col>
+          <Col md={6}>
             <NewTweet profile={profile} onAddTweet={handleAddTweet} />
             <br />
-            <TweetCards profile={profile} cards={cards} onDeleteTweet={handleDeleteTweet} onLikeTweet={handleLikeTweet} />
-          </div>
-          <div className="col-md-3">
+            <TweetCards
+              profile={profile}
+              cards={cards}
+              onDeleteTweet={handleDeleteTweet}
+              onLikeTweet={handleLikeTweet}
+            />
+          </Col>
+          <Col md={3}>
             <RightPanel />
-          </div>
-        </div>
-      </div>
-
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
 
-export default App
+export default App;
