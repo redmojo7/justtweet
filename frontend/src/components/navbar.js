@@ -15,10 +15,10 @@ class NavigationBar extends Component {
                         <Nav.Link href="#messages">Messages</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
-        
+
                 <Form className="form-inline ">
                     <input type="text" placeholder="Search" className="form-control" />
-                    <button style={{marginLeft: '20px'}} className="btn btn-sm twitter-button">Tweet</button>
+                    <button style={{ marginLeft: '20px' }} className="btn btn-sm twitter-button">Tweet</button>
                 </Form>
 
             </Navbar>

@@ -51,8 +51,8 @@ class NewTweet extends Component {
             views: 0,
             date: new Date().toLocaleString("en-US", this.options),
             user: this.state.profile
-          };
-      this.props.onAddTweet(tweet);
+        };
+        this.props.onAddTweet(tweet);
     }
 
     render(props) {

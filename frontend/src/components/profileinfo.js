@@ -49,18 +49,18 @@ class ProfileInfo extends Component {
         <br />
         <p className="tweet-color">1,142 Photos and Videos</p>
         <table>
-        <tbody>
-          {rows.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {row.map((image, columnIndex) => (
-                <td key={columnIndex}>
-                  <img src={image.url} className="gallery-image-vedio" alt={`Image ${rowIndex * 3 + columnIndex + 1}`} />
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-    </table>
+          <tbody>
+            {rows.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {row.map((image, columnIndex) => (
+                  <td key={columnIndex}>
+                    <img src={image.url} className="gallery-image-vedio" alt={`Image ${rowIndex * 3 + columnIndex + 1}`} />
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     ) : null;
   }
