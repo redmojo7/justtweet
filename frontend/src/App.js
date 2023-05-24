@@ -8,6 +8,7 @@ import ProfileStats from "./components/profilestats";
 import NewTweet from "./components/newtweet";
 import { TweetCards } from "./components/tweetcard";
 import RightPanel from "./components/rightpanel";
+import Footer from "./components/footer";
 import { loadTweets as getTweets, createTweet, deleteTweet } from './controllers/tweetcontroller';
 import getProfile from './controllers/userscontroller';
 
@@ -113,6 +114,8 @@ function App() {
           </Col>
         </Row>
       </Container>
+      <br />
+      <Footer />
     </div>
   );
 }
