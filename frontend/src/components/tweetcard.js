@@ -51,7 +51,7 @@ class TweetCards extends Component {
             cards: cards
         });
 
-        this.props.onLikeTweet();  
+        this.props.onLikeTweet();
 
     }
 
@@ -88,7 +88,7 @@ class TweetCards extends Component {
             }
             return item;
         });
-        this.setState({ cards: cards});
+        this.setState({ cards: cards });
     }
 
     handleDelete(id) {
@@ -103,18 +103,24 @@ class TweetCards extends Component {
             cards: cards
         });
         */
-        this.props.onDeleteTweet(id);  
+        this.props.onDeleteTweet(id);
     }
 
     render(props) {
         return (
             <div>
-                {this.state.cards.length > 0 && this.state.cards.map(card => <TweetCard
-                    key={card._id} card={card} profile={this.state.profile}
-                    onLike={this.handleLike} onRetweet={this.handleRetweet}
-                    onComment={this.handleComment} onEllipsis={this.handleEllipsis}
-                    onDelete={this.handleDelete}
-                />)}
+                {this.state.cards.length > 0 ? (
+                    this.state.cards.map(card => (
+                        <TweetCard
+                            key={card._id} card={card} profile={this.state.profile}
+                            onLike={this.handleLike} onRetweet={this.handleRetweet}
+                            onComment={this.handleComment} onEllipsis={this.handleEllipsis}
+                            onDelete={this.handleDelete}
+                        />
+                    ))
+                ) : (
+                    <p>No tweets available. Add a tweet to get started!</p>
+                )}
             </div>
         );
     }
@@ -132,13 +138,13 @@ class TweetCard extends Component {
     }
 
     render(props) {
-        const { content, comments, retweets, likes, views, date, showDeleteButton} = this.props.card;
+        const { content, comments, retweets, likes, views, date, showDeleteButton } = this.props.card;
         const user = this.props.profile;
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-md-2">
-                    <img src={`images/${user.avatar}`} className="avarta-image" alt="avarta Image" />
+                        <img src={`images/${user.avatar}`} className="avarta-image" alt="avarta Image" />
                     </div>
                     <div className="col-md-10">
                         <strong>{user.name}</strong> @{user.account} - {date}
@@ -146,7 +152,7 @@ class TweetCard extends Component {
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </div>
                         {showDeleteButton &&
-                            
+
                             <span ><Button onClick={() => this.props.onDelete(this.props.card._id)} variant="link" className="float-end custom-delete-button">Delete</Button></span>
                         }
                         <p >{content}</p>
@@ -154,7 +160,7 @@ class TweetCard extends Component {
                             <table className="table table-borderless">
                                 <tbody className="text-center">
                                     <tr>
-                                        <td > <FontAwesomeIcon icon={faComment} onClick={() => this.props.onComment(this.props.card._id)}/> {comments}</td>
+                                        <td > <FontAwesomeIcon icon={faComment} onClick={() => this.props.onComment(this.props.card._id)} /> {comments}</td>
                                         <td > <FontAwesomeIcon icon={faRetweet} onClick={() => this.props.onRetweet(this.props.card._id)} /> {retweets}</td>
                                         <td > <FontAwesomeIcon icon={faHeart} onClick={() => this.props.onLike(this.props.card._id)} /> {likes}</td>
                                         <td > <FontAwesomeIcon icon={faEye} /> {views}</td>
