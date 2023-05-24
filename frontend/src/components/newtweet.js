@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Modal, Button } from 'react-bootstrap';
 
 class NewTweet extends Component {
 
@@ -7,11 +8,13 @@ class NewTweet extends Component {
         day: "numeric"
     };
 
-    state = {}
     constructor(props) {
         super(props);
         this.textAreaRef = React.createRef();
         this.handleTweet = this.handleTweet.bind(this);
+        this.state = {
+            showAlert: false
+        };
     }
 
     componentDidMount() {
@@ -30,16 +33,35 @@ class NewTweet extends Component {
         const text = this.textAreaRef.current.value;
         console.log("Tweet Clicked:", text);
         this.textAreaRef.current.value = "";
-        const tweet = {content: text, comments: 0, retweets: 0, likes: 0, views: 0, date: new Date().toLocaleString("en-US", this.options), user: this.state.profile }
-        this.props.onAddTweet(tweet);  
+
+        if (text.trim() === "") {
+            // Show an error message to the user
+            //alert("Please enter some content before tweeting.");
+            this.setState({ showAlert: true });
+            return;
+        }
+        // Clear the error message if it was previously shown
+        this.setState({ showAlert: false });
+
+        const tweet = {
+            content: text,
+            comments: 0,
+            retweets: 0,
+            likes: 0,
+            views: 0,
+            date: new Date().toLocaleString("en-US", this.options),
+            user: this.state.profile
+          };
+      this.props.onAddTweet(tweet);
     }
 
     render(props) {
+        const { showAlert } = this.state;
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-md-2">
-                    <img src={`images/${this.props.profile.avatar}`} className="avarta-image" alt="Example Image" />
+                        <img src={`images/${this.props.profile.avatar}`} className="avarta-image" alt="Example Image" />
                     </div>
                     <div className="col-md-10">
                         <textarea ref={this.textAreaRef} className="form-control" rows="3" placeholder="What's happening?"></textarea>
@@ -48,6 +70,19 @@ class NewTweet extends Component {
                         </div>
                     </div>
                 </div>
+                <Modal show={showAlert} onHide={() => this.setState({ showAlert: false })}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Error: Empty Tweet.</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div>Please enter some content before tweeting.</div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={() => this.setState({ showAlert: false })}>
+                            OK
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </div>);
     }
 }
