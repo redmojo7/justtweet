@@ -23,7 +23,7 @@ class RecommendFriends extends Component {
             });
 
         this.setState({
-            users: users
+            recommendUsers: users
         });
     }
 
