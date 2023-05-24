@@ -149,7 +149,7 @@ class TweetCard extends Component {
                             
                             <span ><Button onClick={() => this.props.onDelete(this.props.card._id)} variant="link" className="float-end custom-delete-button">Delete</Button></span>
                         }
-                        <p>{content}</p>
+                        <p >{content}</p>
                         <div className="row">
                             <table className="table table-borderless">
                                 <tbody className="text-center">
