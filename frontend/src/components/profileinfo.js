@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { chunk } from 'lodash';
-import { Button } from "react-bootstrap";
+import { Button, Image, Table } from "react-bootstrap";
 
 
 class ProfileInfo extends Component {
@@ -19,6 +19,7 @@ class ProfileInfo extends Component {
 
   constructor(props) {
     super(props);
+    console.log("ProfileInfo Constructor");
   }
 
   componentDidMount(props) {
@@ -38,29 +39,26 @@ class ProfileInfo extends Component {
 
     return profile ? (
       <div className="text-left">
-        <br />
-        <h3 >{profile.name}</h3>
+        <h3 className="mt-2">{profile.name}</h3>
         <p className="text-secondary">@{profile.account}</p>
-        <p><a className="no-underline" href="#">twitter.com/{profile.account}</a></p>
+        <p><a className="no-underline" href="/">twitter.com/{profile.account}</a></p>
         <p className="tweet-color">{profile.location}</p>
         <p className="text-secondary">Joined {profile.joined}</p>
-        <button className="btn twitter-button">Tweet to {profile.name}</button>
-        <br />
-        <br />
-        <p className="tweet-color">1,142 Photos and Videos</p>
-        <table>
+        <Button className="btn twitter-button">Tweet to {profile.name}</Button>
+        <p className="mt-3 tweet-color">1,142 Photos and Videos</p>
+        <Table>
           <tbody>
             {rows.map((row, rowIndex) => (
               <tr key={rowIndex}>
                 {row.map((image, columnIndex) => (
                   <td key={columnIndex}>
-                    <img src={image.url} className="gallery-image-vedio" alt={`Image ${rowIndex * 3 + columnIndex + 1}`} />
+                    <Image src={image.url} className="gallery-image-vedio" alt={`Image ${rowIndex * 3 + columnIndex + 1}`} />
                   </td>
                 ))}
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       </div>
     ) : null;
   }

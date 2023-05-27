@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 
 class NavigationBar extends Component {
+
+    constructor(props) {
+        super(props);
+        console.log("NavigationBar Mounted");
+    }
+
     render() {
         return (
             <Navbar bg="light" expand="lg">
@@ -15,12 +21,10 @@ class NavigationBar extends Component {
                         <Nav.Link href="#messages">Messages</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
-
-                <Form className="form-inline ">
-                    <input type="text" placeholder="Search" className="form-control" />
-                    <button style={{ marginLeft: '20px' }} className="btn btn-sm twitter-button">Tweet</button>
+                <Form className="form-inline">
+                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                    <Button className="btn btn-sm twitter-button">Tweet</Button>
                 </Form>
-
             </Navbar>
         );
     }

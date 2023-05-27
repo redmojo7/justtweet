@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from 'react-bootstrap';
+import { Button, Container, Row, Image, Col, Table } from 'react-bootstrap';
 //import avartaImage from '../images/avatar.jpeg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisVertical, faComment, faRetweet, faHeart, faEye } from '@fortawesome/free-solid-svg-icons'
@@ -141,23 +141,22 @@ class TweetCard extends Component {
         const { content, comments, retweets, likes, views, date, showDeleteButton } = this.props.card;
         const user = this.props.profile;
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-2">
-                        <img src={`images/${user.avatar}`} className="avarta-image" alt="avarta Image" />
-                    </div>
-                    <div className="col-md-10">
+            <Container>
+                <Row>
+                    <Col md={2}>
+                        <Image src={`images/${user.avatar}`} className="avarta-image" alt="avarta Image" />
+                    </Col>
+                    <Col md={10}>
                         <strong>{user.name}</strong> @{user.account} - {date}
                         <div className="float-end ml-2 p-2 py-1" onClick={() => this.props.onEllipsis(this.props.card._id)}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </div>
                         {showDeleteButton &&
-
                             <span ><Button onClick={() => this.props.onDelete(this.props.card._id)} variant="link" className="float-end custom-delete-button">Delete</Button></span>
                         }
                         <p >{content}</p>
-                        <div className="row">
-                            <table className="table table-borderless">
+                        <Row>
+                            <Table className="table table-borderless">
                                 <tbody className="text-center">
                                     <tr>
                                         <td > <FontAwesomeIcon icon={faComment} onClick={() => this.props.onComment(this.props.card._id)} /> {comments}</td>
@@ -166,12 +165,12 @@ class TweetCard extends Component {
                                         <td > <FontAwesomeIcon icon={faEye} /> {views}</td>
                                     </tr>
                                 </tbody>
-                            </table>
-                        </div>
-                    </div>
+                            </Table>
+                        </Row>
+                    </Col>
                     <hr />
-                </div>
-            </div>);
+                </Row>
+            </Container>);
     }
 }
 export { TweetCard, TweetCards };

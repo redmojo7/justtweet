@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Image, Row, Col, Button, Container } from 'react-bootstrap';
 
 class RecommendFriends extends Component {
     state = {
@@ -44,22 +45,22 @@ class RecommendFriend extends Component {
 
     render(props) {
         return (
-            <div className="row">
-                <div className="col-md-2 text-left">
-                    <img src={`images/${this.props.user.avatar}`} className="avarta-image" alt="avarta Image" />
-                </div>
-                <div className="col-md-2 text-left">
-                </div>
-                <div className="col-md-8 text-right">
-                    <strong>{this.props.user.name}  </strong>{this.props.user.account}
-                    <div className="mt-2">
-                        <button className="btn btn-sm follow-button"
-                            onClick={() => this.props.onFollow(this.props.user.id)}
-                        >Follow</button>
-                    </div>
-                </div>
+            <Row>
+                <Col md={4} className="text-left">
+                    <Image src={`images/${this.props.user.avatar}`} className="avarta-image" alt="avarta Image" />
+                </Col>
+                <Col md={8} className="text-left">
+                    <Row>
+                        <Col>
+                            <strong>{this.props.user.name}  </strong>{this.props.user.account}
+                        </Col>
+                    </Row>
+                    <Button className="btn btn-sm follow-button mt-2" onClick={() => this.props.onFollow(this.props.user.id)}>
+                        Follow
+                    </Button>
+                </Col>
                 <hr />
-            </div>
+            </Row>
         );
     }
 }
@@ -68,19 +69,20 @@ class RecommendFriend extends Component {
 class RightPanel extends Component {
     render() {
         return (
-            <div>
-                <div className="row">
-                    <h5 className="col-md-6">Who to follow</h5>
-                    <div className="col-md-6 text-right">
-                        <a href="#" className="mr-2">Refresh</a>
+            <Container>
+                <Row>
+                    <Col md={6}>
+                        <h5>Who to follow</h5>
+                    </Col>
+                    <Col md={6} className="text-right">
+                        <a href="/" className="mr-2">Refresh</a>
                         <span className="mr-2">•</span>
-                        <a href="#">View all</a>
-                    </div>
-                </div>
+                        <a href="/">View all</a>
+                    </Col>
+                </Row>
                 <br />
                 <RecommendFriends />
-
-            </div>
+            </Container>
         );
     }
 }

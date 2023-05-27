@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Container, Row, Col, Image, Form } from 'react-bootstrap';
 
 class NewTweet extends Component {
 
@@ -58,24 +58,31 @@ class NewTweet extends Component {
     render(props) {
         const { showAlert } = this.state;
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-2">
-                        <img src={`images/${this.props.profile.avatar}`} className="avarta-image" alt="Example Image" />
-                    </div>
-                    <div className="col-md-10">
-                        <textarea ref={this.textAreaRef} className="form-control" rows="3" placeholder="What's happening?"></textarea>
-                        <div className="mt-2">
-                            <button onClick={this.handleTweet} className="btn btn-sm twitter-button" >Tweet</button>
-                        </div>
-                    </div>
-                </div>
+            <Container>
+                <Row>
+                    <Col md={2}>
+                        <Image src={`images/${this.props.profile.avatar}`} className="avarta-image" alt="Example Image" />
+                    </Col>
+                    <Col md={10}>
+                        <Form.Group>
+                            <Form.Control
+                                ref={this.textAreaRef}
+                                as="textarea"
+                                rows={3}
+                                placeholder="What's happening?"
+                            />
+                        </Form.Group>
+                        <Button onClick={this.handleTweet} className="btn btn-sm twitter-button mt-2">
+                            Tweet
+                        </Button>
+                    </Col>
+                </Row>
                 <Modal show={showAlert} onHide={() => this.setState({ showAlert: false })}>
                     <Modal.Header closeButton>
                         <Modal.Title>Error: Empty Tweet.</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <div>Please enter some content before tweeting.</div>
+                        <p>Please enter some content before tweeting.</p>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="primary" onClick={() => this.setState({ showAlert: false })}>
@@ -83,7 +90,8 @@ class NewTweet extends Component {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-            </div>);
+            </Container>
+        );
     }
 }
 export default NewTweet;

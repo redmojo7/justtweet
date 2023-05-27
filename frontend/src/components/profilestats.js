@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Container, Row, Col, Table, Image } from 'react-bootstrap';
 
 class ProfileStats extends Component {
 
@@ -8,6 +9,7 @@ class ProfileStats extends Component {
 
     constructor(props) {
         super(props);
+        console.log("ProfileStats Mounted", this.props.statistics);
     }
 
     componentDidMount(props) {
@@ -23,13 +25,13 @@ class ProfileStats extends Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-3">
-                            <img src="images/avatar.jpeg" className="avarta-image-flow" alt="avarta Image" />
-                        </div>
-                        <div className="col-md-6 ">
-                            <table className="table table-borderless">
+                <Container>
+                    <Row>
+                        <Col md={3}>
+                            <Image src="images/avatar.jpeg" className="avarta-image-flow" alt="avarta Image" />
+                        </Col>
+                        <Col md={6}>
+                            <Table className="table table-borderless">
                                 <tbody className="text-center">
                                     <tr>
                                         <td><strong>Tweets</strong></td>
@@ -44,10 +46,10 @@ class ProfileStats extends Component {
                                         <td>{this.state.statistics.likes}</td>
                                     </tr>
                                 </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                            </Table>
+                        </Col>
+                    </Row>
+                </Container>
             </div>);
     }
 }

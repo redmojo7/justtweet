@@ -62,6 +62,7 @@ a{
 .twitter-button {
   width: '300px';
   background-color: #1da1f2;
+  border: 1px solid #1da1f2;
   color: white;
   border-radius: 20px;
   padding: 5px 20px;
@@ -69,6 +70,8 @@ a{
 
 .twitter-button:hover {
   width: '300px';
+  background-color: white;
+  color: #1da1f2;
   border: 1px solid #1da1f2;
   border-radius: 20px;
   padding: 5px 20px;
@@ -81,8 +84,10 @@ a{
   border-radius: 20px;
   padding: 5px 20px;
 }
+
 .follow-button:hover {
   background-color: #1da1f2;
+  border: 1px solid #1da1f2;
   color: white;
   border-radius: 20px;
   padding: 5px 20px;
