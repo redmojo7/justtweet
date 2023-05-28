@@ -29,7 +29,7 @@ class ProfileInfo extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.profile !== prevProps.profile) {
-      this.state.profile = this.props.profile;
+      this.setState({ profile: this.props.profile });
     }
   }
 
