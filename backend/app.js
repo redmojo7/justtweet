@@ -1,9 +1,12 @@
 const express = require('express');
 const initialize = require('./init');
 const cors = require('cors');
+const morgan = require('morgan'); 
 const bodyParser = require('body-parser');
 const userRoute = require('./routes/userRoute');
 const tweetRoute = require('./routes/tweetRoute');
+const timeout = require('connect-timeout');
+
 const app = express();
 const port = 8080;
 
@@ -16,6 +19,9 @@ app.set('view engine', 'pug');
 app.use(cors());
 
 // Use routes
+app.use(morgan('tiny'))
+app.use(timeout('5s'));
+
 app.use('/api/user', userRoute);
 app.use('/api/tweet', tweetRoute);
 

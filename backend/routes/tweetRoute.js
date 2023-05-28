@@ -10,13 +10,13 @@ tweetRouter.get('/', async (req, res) => {
     const username = "redmojo";
     // Find the user by username
     userService.getUserByUsername(username).then((user) => {
-        console.log("tweetRouter.get result:", user);
+        //console.log("tweetRouter.get result:", user);
         if (user.error) {
             return res.status(404).json({ message: 'User not found' });
         }
         // Get the tweets by userId
         tweetService.getTweetsByUser(user.foundUser._id).then((tweets) => {
-            console.log("tweetRouter.get result:", tweets);
+            //console.log("tweetRouter.get result:", tweets);
             res.json({ tweets });
         }).catch((err) => {
             console.error(err);
@@ -35,7 +35,7 @@ tweetRouter.post('/', async (req, res) => {
 
     // Create a new tweet
     tweetService.handleCreate(user._id, content).then((result) => {
-        console.log("tweetRouter.post result:", result);
+        //console.log("tweetRouter.post result:", result);
         res.status(201).json({ message: 'Tweet created successfully' });
     }).catch((err) => {
         console.error(err);
@@ -55,6 +55,18 @@ tweetRouter.delete('/:tweetId', async (req, res) => {
         res.status(500).json({ error: "An error occurred while deleting the tweet" });
     }
     );
+});
+
+// Update a tweet
+tweetRouter.put('/', async (req, res) => {
+    const updatedTweet = req.body;
+    console.log("tweetRouter.put req.body:", req.body);
+    tweetService.handleUpdate(updatedTweet).then(() => {
+        res.status(200).json({ message: "Tweet updated successfully" });
+    }).catch((err) => {
+        console.error("Error updating tweet: ", err);
+        res.status(500).json({ error: "An error occurred while updating the tweet" });
+    });
 });
 
 module.exports = tweetRouter;

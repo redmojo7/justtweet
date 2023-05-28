@@ -2,7 +2,7 @@
 const User = require('../models/User');
 
 function getUserByUsername(username) {
-    console.log("getUserByUsername username:", username);
+    //console.log("getUserByUsername username:", username);
     return User.findOne({ account: username })
         .then((foundUser) => {
             if (!foundUser) {

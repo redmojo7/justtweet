@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const loadTweets = async () => {
+const getTweets = async () => {
   try {
     const response = await axios.get('http://localhost:8080/api/tweet');
     return response.data.tweets;
@@ -10,7 +10,7 @@ export const loadTweets = async () => {
   }
 };
 
-export const createTweet = async (tweet) => {
+const createTweet = async (tweet) => {
   try {
     const response = await axios.post('http://localhost:8080/api/tweet', tweet);
     return response.data.tweet;
@@ -20,7 +20,7 @@ export const createTweet = async (tweet) => {
   }
 };
 
-export const deleteTweet = async (tweetId) => {
+const deleteTweet = async (tweetId) => {
   console.log("deleteTweet:", tweetId);
   try {
     const response = await axios.delete(`http://localhost:8080/api/tweet/${tweetId}`);
@@ -30,3 +30,15 @@ export const deleteTweet = async (tweetId) => {
     throw error;
   }
 };
+
+const updateTweet = async (updatedTweet) => {
+  try {
+    const response = await axios.put(`http://localhost:8080/api/tweet`, updatedTweet);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating tweet:', error);
+    throw error;
+  }
+};
+
+export { getTweets, createTweet, deleteTweet, updateTweet};

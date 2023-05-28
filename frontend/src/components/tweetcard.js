@@ -3,6 +3,7 @@ import { Button, Container, Row, Image, Col, Table } from 'react-bootstrap';
 //import avartaImage from '../images/avatar.jpeg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisVertical, faComment, faRetweet, faHeart, faEye } from '@fortawesome/free-solid-svg-icons'
+import { getTweets, deleteTweet, updateTweet } from "../controllers/tweetcontroller";
 
 class TweetCards extends Component {
 
@@ -13,7 +14,6 @@ class TweetCards extends Component {
 
     constructor(props) {
         super(props);
-        //this.state.cards = props.cards;
         this.handleLike = this.handleLike.bind(this);
         this.handleRetweet = this.handleRetweet.bind(this);
         this.handleComment = this.handleComment.bind(this);
@@ -23,9 +23,9 @@ class TweetCards extends Component {
         this.setState({ profile: this.props.profile });
     }
 
-    componentDidMount() {
-        console.log("TweetCards Mounted", this.props.cards);
-
+    componentDidMount(prevProps) {
+        console.log("TweetCards Mounted");
+        
     }
 
     componentDidUpdate(prevProps) {
@@ -38,12 +38,13 @@ class TweetCards extends Component {
         }
     }
 
-    handleLike(id) {
+    async handleLike(id) {
         console.log("Like Clicked", id);
-
+        let updatedTweet = {};
         const cards = this.state.cards.map(item => {
             if (item._id === id) {
                 item.likes = item.likes + 1;
+                updatedTweet = item;
             }
             return item;
         })
@@ -51,23 +52,26 @@ class TweetCards extends Component {
         this.setState({
             cards: cards
         });
-
-        this.props.onLikeTweet();
-
+        await updateTweet(updatedTweet);
+        this.props.onTweetChanged(cards);
     }
 
-    handleRetweet(id) {
+    async handleRetweet(id) {
         console.log("Retweet Clicked", id);
+        let updatedTweet = {};
         const cards = this.state.cards.map(item => {
             if (item._id === id) {
                 item.retweets = item.retweets + 1;
+                updatedTweet = item;
             }
             return item;
         })
-
         this.setState({
             cards: cards
         });
+        
+        await updateTweet(updatedTweet);
+        this.props.onTweetChanged(cards);
     }
 
     handleComment(id) {
@@ -92,7 +96,7 @@ class TweetCards extends Component {
         this.setState({ cards: cards });
     }
 
-    handleDelete(id) {
+    async handleDelete(id) {
         console.log("Delete Clicked", id);
         /*
         const cards = this.state.cards.filter(
@@ -104,7 +108,11 @@ class TweetCards extends Component {
             cards: cards
         });
         */
-        this.props.onDeleteTweet(id);
+        //this.props.onDeleteTweet(id);
+        await deleteTweet(id);
+        const updatedCards = await getTweets();
+        this.setState({ cards: updatedCards });
+        this.props.onTweetChanged(updatedCards);
     }
 
     render(props) {
@@ -120,7 +128,7 @@ class TweetCards extends Component {
                         />
                     ))
                 ) : (
-                    <p>No tweets available. Add a tweet to get started!</p>
+                    null
                 )}
             </div>
         );

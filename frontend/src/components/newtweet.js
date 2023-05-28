@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Modal, Button, Container, Row, Col, Image, Form } from 'react-bootstrap';
+import {createTweet} from "../controllers/tweetcontroller";
 
 class NewTweet extends Component {
 
@@ -29,7 +30,7 @@ class NewTweet extends Component {
         }
     }
 
-    handleTweet() {
+    async handleTweet() {
         const text = this.textAreaRef.current.value;
         console.log("Tweet Clicked:", text);
         this.textAreaRef.current.value = "";
@@ -52,7 +53,10 @@ class NewTweet extends Component {
             date: new Date().toLocaleString("en-US", this.options),
             user: this.state.profile
         };
-        this.props.onAddTweet(tweet);
+        //this.props.onAddTweet(tweet);
+        const newTweet = await createTweet(tweet);
+        console.log("New Tweet:", newTweet);
+        this.props.onTweetChanged();
     }
 
     render(props) {
