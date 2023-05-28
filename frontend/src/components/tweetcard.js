@@ -7,11 +7,6 @@ import { getTweets, deleteTweet, updateTweet } from "../controllers/tweetcontrol
 
 class TweetCards extends Component {
 
-    state = {
-        cards: [],
-        profile: {}
-    }
-
     constructor(props) {
         super(props);
         this.handleLike = this.handleLike.bind(this);
@@ -19,8 +14,10 @@ class TweetCards extends Component {
         this.handleComment = this.handleComment.bind(this);
         this.handleEllipsis = this.handleEllipsis.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
-        this.setState({ cards: this.props.cards });
-        this.setState({ profile: this.props.profile });
+        this.state = {
+            cards: [], // Initialize as an empty array
+            profile: this.props.profile
+        };
     }
 
     componentDidMount(prevProps) {
@@ -52,6 +49,7 @@ class TweetCards extends Component {
         this.setState({
             cards: cards
         });
+        // Call the API to update the tweet
         await updateTweet(updatedTweet);
         this.props.onTweetChanged(cards);
     }
@@ -69,7 +67,7 @@ class TweetCards extends Component {
         this.setState({
             cards: cards
         });
-        
+        // Call the API to update the tweet
         await updateTweet(updatedTweet);
         this.props.onTweetChanged(cards);
     }

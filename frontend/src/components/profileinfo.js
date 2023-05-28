@@ -20,7 +20,7 @@ class ProfileInfo extends Component {
   constructor(props) {
     super(props);
     console.log("ProfileInfo Constructor");
-    this.setState({ profile: this.props.profile });
+    //this.setState({ profile: this.props.profile });
   }
 
   componentDidMount(props) {
@@ -29,7 +29,7 @@ class ProfileInfo extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.profile !== prevProps.profile) {
-      this.setState({ profile: this.props.profile });
+      this.state.profile = this.props.profile;
     }
   }
 
