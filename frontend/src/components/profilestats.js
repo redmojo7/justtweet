@@ -9,11 +9,12 @@ class ProfileStats extends Component {
 
     constructor(props) {
         super(props);
+        this.setState({ statistics: this.props.statistics });
         console.log("ProfileStats Mounted", this.props.statistics);
     }
 
     componentDidMount(props) {
-        this.setState({ statistics: this.props.statistics });
+        
     }
 
     componentDidUpdate(prevProps) {

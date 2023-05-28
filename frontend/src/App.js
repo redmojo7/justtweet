@@ -90,16 +90,16 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App" >
       <NavigationBar />
       <ProfileCover />
       <ProfileStats statistics={statistics} />
-      <Container>
-        <Row>
-          <Col md={3}>
+      <Container className='bg-light' >
+        <Row >
+          <Col md={{span:3 }}>
             <ProfileInfo profile={profile} />
           </Col>
-          <Col md={6}>
+          <Col md={6} className='bg-white'>
             <NewTweet profile={profile} onAddTweet={handleAddTweet} />
             <hr />
             <TweetCards
@@ -109,7 +109,7 @@ function App() {
               onLikeTweet={handleLikeTweet}
             />
           </Col>
-          <Col md={3}>
+          <Col md={3} >
             <RightPanel />
           </Col>
         </Row>

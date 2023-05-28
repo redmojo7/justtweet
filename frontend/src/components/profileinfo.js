@@ -20,11 +20,11 @@ class ProfileInfo extends Component {
   constructor(props) {
     super(props);
     console.log("ProfileInfo Constructor");
+    this.setState({ profile: this.props.profile });
   }
 
   componentDidMount(props) {
     console.log("ProfileInfo Mounted");
-    this.setState({ profile: this.props.profile });
   }
 
   componentDidUpdate(prevProps) {

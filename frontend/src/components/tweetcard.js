@@ -19,12 +19,13 @@ class TweetCards extends Component {
         this.handleComment = this.handleComment.bind(this);
         this.handleEllipsis = this.handleEllipsis.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.setState({ cards: this.props.cards });
+        this.setState({ profile: this.props.profile });
     }
 
     componentDidMount() {
         console.log("TweetCards Mounted", this.props.cards);
-        this.setState({ cards: this.props.cards });
-        this.setState({ profile: this.props.profile });
+
     }
 
     componentDidUpdate(prevProps) {
