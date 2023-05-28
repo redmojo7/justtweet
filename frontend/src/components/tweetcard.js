@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Button, Container, Row, Image, Col, Table } from 'react-bootstrap';
-//import avartaImage from '../images/avatar.jpeg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisVertical, faComment, faRetweet, faHeart, faEye } from '@fortawesome/free-solid-svg-icons'
 import { getTweets, deleteTweet, updateTweet } from "../controllers/tweetcontroller";
